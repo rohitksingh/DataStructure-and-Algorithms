@@ -9,7 +9,7 @@ public class TreeTest {
     public static void main(String[] args){
 
         TreeTest treeTest = new TreeTest();
-        System.out.println(treeTest.getMax(treeTest.getBinaryTree()));
+        System.out.println(treeTest.getMaxIterative(treeTest.getBinaryTree()));
     }
 
     //Q - Find max element in Binary Tree
@@ -33,6 +33,34 @@ public class TreeTest {
         if(b>=c && b>=a)
             return b;
         return c;
+    }
+
+    public int getMaxIterative(BinaryTree binaryTree){
+
+        if(binaryTree==null)
+            return Integer.MIN_VALUE;
+
+        Queue<BinaryTree> queue = new LinkedList<>();
+        queue.add(binaryTree);
+        int result = Integer.MIN_VALUE;
+
+        while(!queue.isEmpty()){
+            BinaryTree node = queue.remove();
+
+            if(result<node.getData())
+                result = node.getData();
+
+            result = (result < node.getData()) ? node.getData() : result ;
+
+            if(node.getLeft()!=null){
+                queue.add(node.getLeft());
+            }
+            if(node.getRight()!=null){
+                queue.add(node.getRight());
+            }
+        }
+
+        return result;
     }
 
 
