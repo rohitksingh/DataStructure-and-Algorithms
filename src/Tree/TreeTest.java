@@ -5,17 +5,40 @@ public class TreeTest {
     public static void main(String[] args){
 
         TreeTest treeTest = new TreeTest();
-        treeTest.preTraversal(treeTest.getBinaryTree());
+        treeTest.preOrderTraversal(treeTest.getBinaryTree());
+        System.out.println();
+        treeTest.postOrderTraversal(treeTest.getBinaryTree());
+        System.out.println();
+        treeTest.inOrderTraversal(treeTest.getBinaryTree());
     }
 
-    public void preTraversal(BinaryTree binaryTree){
+    public void preOrderTraversal(BinaryTree binaryTree){
 
-        if(binaryTree==null)
-            return;
+        if(binaryTree!=null){
+            System.out.print(binaryTree.getData()+" ");
+            preOrderTraversal(binaryTree.getLeft());
+            preOrderTraversal(binaryTree.getRight());
+        }
+    }
 
-        System.out.print(binaryTree.getData()+" ");
-        preTraversal(binaryTree.getLeft());
-        preTraversal(binaryTree.getRight());
+    public void postOrderTraversal(BinaryTree binaryTree){
+
+        if(binaryTree!=null){
+            postOrderTraversal(binaryTree.getLeft());
+            postOrderTraversal(binaryTree.getRight());
+            System.out.print(binaryTree.getData()+" ");
+        }
+
+    }
+
+    public void inOrderTraversal(BinaryTree binaryTree){
+
+        if(binaryTree!=null){
+            inOrderTraversal(binaryTree.getLeft());
+            System.out.print(binaryTree.getData()+" ");
+            inOrderTraversal(binaryTree.getRight());
+        }
+
     }
 
     public BinaryTree getBinaryTree(){
