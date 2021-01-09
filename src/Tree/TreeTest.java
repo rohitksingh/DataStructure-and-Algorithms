@@ -9,9 +9,32 @@ public class TreeTest {
     public static void main(String[] args){
 
         TreeTest treeTest = new TreeTest();
-        treeTest.levelOrderTraversal(treeTest.getBinaryTree());
-        System.out.println();
+        System.out.println(treeTest.getMax(treeTest.getBinaryTree()));
     }
+
+    //Q - Find max element in Binary Tree
+    //Recursice function.
+    //Key things
+    //  - Traverse the tree recursively
+    //  - compare parent node with children
+    public int getMax(BinaryTree binaryTree){
+
+        if(binaryTree==null)
+            return Integer.MIN_VALUE;
+
+        int result = max(binaryTree.getData(), getMax(binaryTree.getLeft()), getMax(binaryTree.getRight()));
+
+        return result;
+    }
+
+    public int max(int a, int b, int c){
+        if(a>=b && a>=c)
+            return a;
+        if(b>=c && b>=a)
+            return b;
+        return c;
+    }
+
 
     //Recursive algorithms
     public void preOrderTraversal(BinaryTree binaryTree){
