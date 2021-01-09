@@ -1,17 +1,19 @@
 package Tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class TreeTest {
 
     public static void main(String[] args){
 
         TreeTest treeTest = new TreeTest();
-        treeTest.preOrderTraversal(treeTest.getBinaryTree());
+        treeTest.levelOrderTraversal(treeTest.getBinaryTree());
         System.out.println();
-        treeTest.postOrderTraversal(treeTest.getBinaryTree());
-        System.out.println();
-        treeTest.inOrderTraversal(treeTest.getBinaryTree());
     }
 
+    //Recursive algorithms
     public void preOrderTraversal(BinaryTree binaryTree){
 
         if(binaryTree!=null){
@@ -41,6 +43,103 @@ public class TreeTest {
 
     }
 
+
+    public void preOrderIterative(BinaryTree binaryTree){
+
+        Stack<BinaryTree> stack = new Stack<>();
+        if(binaryTree!=null){
+            stack.push(binaryTree);
+        }
+
+        while(!stack.empty()){
+            BinaryTree node = stack.pop();
+            System.out.print(node.getData()+" ");
+            if(node.getRight()!=null){
+                stack.push(node.getRight());
+            }
+            if(node.getLeft()!=null){
+                stack.push(node.getLeft());
+            }
+        }
+
+    }
+
+
+    //Level order traversal
+    //It is same as Preorder traversal. Only difference is it uses Queue instead of Stack.
+    //Also the left element is added first and then right.
+    public void levelOrderTraversal(BinaryTree binaryTree){
+
+        if(binaryTree==null)
+            return;
+
+        Queue<BinaryTree> queue = new LinkedList<>();
+        queue.add(binaryTree);
+
+        while(!queue.isEmpty()){
+            BinaryTree node = queue.remove();
+            System.out.println(node.getData());
+            if(node.getLeft()!=null){
+                queue.add(node.getLeft());
+            }
+            if(node.getRight()!=null){
+                queue.add(node.getRight());
+            }
+        }
+
+
+    }
+
+
+
+    public void inOrderIterative(BinaryTree binaryTree){
+
+        if(binaryTree==null)
+            return;
+
+        Stack<BinaryTree> stack = new Stack<>();
+        stack.push(binaryTree);
+
+        while(!stack.empty()){
+
+
+
+        }
+
+    }
+
+    public void postOrderIterative(BinaryTree binaryTree){
+
+        if(binaryTree==null)
+            return;
+
+        Stack<BinaryTree> stack = new Stack<>();
+        stack.push(binaryTree);
+
+        while (!stack.empty()){
+            BinaryTree node = stack.peek();
+            System.out.println(node.getData());
+            if(node.getLeft()==null && node.getRight()==null){
+                System.out.println("Popping "+stack.pop().getData()+" ");
+            }else{
+                if(node.getRight()!=null){
+                    //System.out.print("Pushing "+node.getRight().getData());
+                    stack.push(node.getRight());
+                }
+
+                if(node.getLeft()!=null){
+                    //System.out.print("Pushing "+node.getLeft().getData());
+                    stack.push(node.getLeft());
+                }
+
+            }
+        }
+
+    }
+
+
+
+    //A sample binary tree
     public BinaryTree getBinaryTree(){
         BinaryTree root = new BinaryTree(1);
         BinaryTree node2 = new BinaryTree(2);
