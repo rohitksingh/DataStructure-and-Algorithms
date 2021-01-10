@@ -1,5 +1,6 @@
 package Tree;
 
+import java.security.PublicKey;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -9,9 +10,37 @@ public class TreeTest {
     public static void main(String[] args){
 
         TreeTest treeTest = new TreeTest();
-        System.out.println(treeTest.searchIterative(treeTest.getBinaryTree(), 5));
+
+        BinaryTree addedTree =  treeTest.addElement(treeTest.getBinaryTree(), 89);
+        treeTest.levelOrderTraversal(addedTree);
     }
 
+    public BinaryTree addElement(BinaryTree binaryTree, int element){
+
+        if(binaryTree==null){
+            return new BinaryTree(element);
+        }
+
+        Queue<BinaryTree> queue = new LinkedList<>();
+        queue.add(binaryTree);
+        boolean leafFound = false;
+        while(!queue.isEmpty() && !leafFound){
+            BinaryTree node = queue.remove();
+            if(node.getLeft()==null && node.getRight()==null){
+                leafFound = true;
+                node.setLeft(new BinaryTree(element));
+            }else{
+                if(node.getLeft()!=null){
+                    queue.add(node.getLeft());
+                }
+                if(node.getRight()!=null){
+                    queue.add(node.getRight());
+                }
+            }
+        }
+
+        return binaryTree;
+    }
 
     public boolean search(BinaryTree binaryTree, int number){
 
