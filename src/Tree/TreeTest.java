@@ -10,11 +10,44 @@ public class TreeTest {
     public static void main(String[] args){
 
         TreeTest treeTest = new TreeTest();
-
-        BinaryTree addedTree =  treeTest.addElement(treeTest.getBinaryTree(), 89);
-        treeTest.levelOrderTraversal(addedTree);
+        treeTest.printReverseLevels(treeTest.getBinaryTree());
     }
 
+
+    //Inorder traversal + a Stack used to reverse the order
+    public void printReverseLevels(BinaryTree binaryTree){
+
+        if(binaryTree==null)
+            return;
+
+        Queue<BinaryTree> queue = new LinkedList<>();
+        Stack<BinaryTree> stack = new Stack<>();
+        queue.add(binaryTree);
+
+        while (!queue.isEmpty()){
+
+            BinaryTree node = queue.remove();
+            stack.push(node);
+
+            if(node.getLeft()!=null){
+                queue.add(node.getLeft());
+            }
+            if(node.getRight()!=null){
+                queue.add(node.getRight());
+            }
+
+        }
+
+        while(!stack.isEmpty()){
+            System.out.print(stack.pop().getData()+" ");
+        }
+    }
+
+
+
+    //Level order traversal + find the first leaf and add the new element there.
+    //This could take lonf if the tree is full binary tree and num of levels are more
+    //A faster approach would be a DFS to find the first node
     public BinaryTree addElement(BinaryTree binaryTree, int element){
 
         if(binaryTree==null){
@@ -271,6 +304,7 @@ public class TreeTest {
         BinaryTree node5 = new BinaryTree(5);
         BinaryTree node6 = new BinaryTree(6);
         BinaryTree node7 = new BinaryTree(7);
+        BinaryTree node8 = new BinaryTree(8);
 
         root.setLeft(node2);
         root.setRight(node3);
@@ -278,6 +312,7 @@ public class TreeTest {
         node2.setRight(node5);
         node3.setLeft(node6);
         node3.setRight(node7);
+        node4.setLeft(node8);
 
 
         return root;
