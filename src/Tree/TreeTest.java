@@ -9,8 +9,51 @@ public class TreeTest {
     public static void main(String[] args){
 
         TreeTest treeTest = new TreeTest();
-        System.out.println(treeTest.getMaxIterative(treeTest.getBinaryTree()));
+        System.out.println(treeTest.searchIterative(treeTest.getBinaryTree(), 5));
     }
+
+
+    public boolean search(BinaryTree binaryTree, int number){
+
+        if(binaryTree==null)
+            return false;
+
+        if(binaryTree.getData()==number){
+            return true;
+        }else {
+            return search(binaryTree.getLeft(), number) || search(binaryTree.getRight(), number);
+        }
+
+    }
+
+    public boolean searchIterative(BinaryTree binaryTree, int number){
+
+        if(binaryTree==null)
+            return false;
+
+        Queue<BinaryTree> queue = new LinkedList<>();
+        queue.add(binaryTree);
+
+        while(!queue.isEmpty()){
+            BinaryTree node = queue.remove();
+            if(number==node.getData()){
+                return true;
+            }else {
+                if(node.getLeft()!=null){
+                    queue.add(node.getLeft());
+                }
+                if(node.getRight()!=null){
+                    queue.add(node.getRight());
+                }
+            }
+        }
+
+        return false;
+
+
+    }
+
+
 
     //Q - Find max element in Binary Tree
     //Recursice function.
