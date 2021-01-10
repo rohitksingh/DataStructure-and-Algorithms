@@ -11,36 +11,8 @@ public class TreeTest {
 
         TreeTest treeTest = new TreeTest();
         //treeTest.inOrderTraversal(treeTest.getBST());
-        System.out.println(treeTest.isBST(treeTest.getBST()));
-//        treeTest.printReverseLevels(treeTest.getBinaryTree());
     }
 
-    //Check if a tree is a BST
-    public boolean isBST(BinaryTree binaryTree){
-
-        boolean isBST = true;
-
-        if(binaryTree!=null){
-            if(binaryTree.getLeft()!=null){
-                if(binaryTree.getLeft().getData()>binaryTree.getData()){
-                    return isBST = false;
-                }else {
-                    isBST = isBST(binaryTree.getLeft());
-                }
-            }
-
-            if(binaryTree.getRight()!=null){
-                if(binaryTree.getRight().getData()<binaryTree.getData()){
-                    return isBST = false;
-                }else {
-                    isBST = isBST(binaryTree.getRight());
-                }
-            }
-        }
-
-        return isBST;
-
-    }
 
 
     //Inorder traversal + a Stack used to reverse the order
@@ -347,24 +319,5 @@ public class TreeTest {
         return root;
     }
 
-    public BinaryTree getBST(){
-        BinaryTree root = new BinaryTree(4);
-        BinaryTree node2 = new BinaryTree(2);
-        BinaryTree node3 = new BinaryTree(3);
-        BinaryTree node1 = new BinaryTree(1);
-        BinaryTree node5 = new BinaryTree(5);
-        BinaryTree node6 = new BinaryTree(6);
-        BinaryTree node7 = new BinaryTree(7);
-        BinaryTree node8 = new BinaryTree(8);
 
-        root.setLeft(node2);
-        root.setRight(node6);
-        node2.setLeft(node1);
-        node2.setRight(node3);
-        node6.setLeft(node5);
-        node6.setRight(node7);
-
-
-        return root;
-    }
 }
