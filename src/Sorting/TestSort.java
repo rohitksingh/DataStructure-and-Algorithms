@@ -7,8 +7,35 @@ public class TestSort {
     public static void main(String[] args){
 
         TestSort testSort = new TestSort();
-        int result = testSort.maxRepeatedElement(new int[]{} );
+        String result = testSort.encode("a");
         System.out.print(result);
+
+    }
+
+
+    public String encode(String input){
+
+        if(input==null || input.length()==0)
+            return "";
+
+        char[] inputChars = input.toCharArray();
+        char prevChar = inputChars[0];
+        int counter = 1;
+        StringBuilder output = new StringBuilder();
+
+        for(int i=1;i<input.length();i++){
+            if(inputChars[i]==prevChar){
+                counter++;
+            }else{
+                output.append(prevChar).append(counter);
+                prevChar = inputChars[i];
+                counter=1;
+            }
+        }
+
+        output.append(prevChar).append(counter);
+
+        return new String(output);
 
     }
 
