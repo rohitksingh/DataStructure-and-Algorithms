@@ -11,22 +11,30 @@ public class BSTTest {
     }
 
 
-    //Add element in a BST
+    /**
+     *                              Add element in a BST
+     * ----------------------------------------------------------------------------
+     * First check if the tree is empty return new element.
+     * Check if the current node is a leaf
+     *     - YES: - Check if the new element is smaller
+     *                  - YES: add the new element in the left
+     *                  - NO: add the new element in the right
+     *     - NO:  - Check if the new element is smaller
+     *                  - YES: recursively call method with left node
+     *                  - NO:  recursively call method with right node
+     */
     public BinaryTree addElement(BinaryTree binaryTree, int element){
 
-        System.out.println("Start");
         if(binaryTree==null)
             return new BinaryTree(element);
 
         if(binaryTree.getLeft()==null && binaryTree.getRight()==null){
-            System.out.println("Found leaf");
             if(element<binaryTree.getData()){
                 binaryTree.setLeft(new BinaryTree(element));
             }else{
                 binaryTree.setRight(new BinaryTree(element));
             }
         }else{
-            System.out.println("Found Non leaf");
             if(element<binaryTree.getData()){
                 addElement(binaryTree.getLeft(), element);
             }else{
@@ -37,6 +45,26 @@ public class BSTTest {
         return binaryTree;
     }
 
+
+    /**
+     *                             Delete element in a BST
+     * ----------------------------------------------------------------------------
+     */
+    public BinaryTree deleteElement(BinaryTree binaryTree, int element){
+        if(binaryTree==null)
+            return binaryTree;
+
+        BinaryTree parent = binaryTree;
+
+        if(element<binaryTree.getData() && binaryTree.getLeft()!=null){
+            deleteElement(binaryTree.getLeft(), element);
+        }else if(element>binaryTree.getData() && binaryTree.getLeft()!=null){
+            deleteElement(binaryTree.getRight(), element);
+        }else{
+            
+        }
+        return binaryTree;
+    }
 
     //Check if a tree is a BST
     public boolean isBST(BinaryTree binaryTree){
