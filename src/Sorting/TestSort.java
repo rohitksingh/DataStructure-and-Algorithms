@@ -7,14 +7,41 @@ public class TestSort {
     public static void main(String[] args){
 
         TestSort testSort = new TestSort();
-        int[] arr = null;
-        int index= testSort.removeDuplicate(null);
-        for(int i=0;i<index;i++){
-            System.out.print(arr[i]+" ");
+
+        int[] output = testSort.merge(new int[]{0,1,2,3}, new int[]{1,2});
+        for(int element : output){
+            System.out.print(element+" ");
         }
 
     }
 
+    //Merge two sorted arrays when extra space is allowed
+    public int[] merge(int[] A, int[] B){
+
+        int[] outputArray = new int[A.length+B.length];
+        int counterA = 0;
+        int counterB = 0;
+
+        int counter = 0;
+
+        while(counter!=outputArray.length){
+
+            if(counterA==A.length){
+                outputArray[counter++] = B[counterB++];
+            } else if(counterB==B.length){
+                outputArray[counter++] = A[counterA++];
+            }else{
+                if(A[counterA]<=B[counterB]){
+                    outputArray[counter++] = A[counterA++];
+                }else{
+                    outputArray[counter++] = B[counterB++];
+                }
+            }
+
+        }
+
+        return outputArray;
+    }
 
     //Remove duplicate from sorted array
     public int removeDuplicate(int[] arr){
