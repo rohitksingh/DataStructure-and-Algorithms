@@ -7,12 +7,39 @@ public class TestSort {
     public static void main(String[] args){
 
         TestSort testSort = new TestSort();
-        String result = testSort.encode("a");
-        System.out.print(result);
+        int[] arr = null;
+        int index= testSort.removeDuplicate(null);
+        for(int i=0;i<index;i++){
+            System.out.print(arr[i]+" ");
+        }
 
     }
 
 
+    //Remove duplicate from sorted array
+    public int removeDuplicate(int[] arr){
+
+        if(arr==null)
+            return 0;
+
+        if(arr.length==1)
+            return 1;
+        int prev = arr[0];
+        int currentIndex = 1;
+
+        for(int i=1;i<arr.length;i++){
+            if(arr[i]!=prev){
+                arr[currentIndex] = arr[i];
+                prev = arr[i];
+                currentIndex++;
+            }
+        }
+
+        return currentIndex;
+    }
+
+
+    //Encode a String eg aaabbcaa = a3b2c1a2
     public String encode(String input){
 
         if(input==null || input.length()==0)
