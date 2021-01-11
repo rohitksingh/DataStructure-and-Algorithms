@@ -1,11 +1,13 @@
 package Sorting;
 
+import java.util.Arrays;
+
 public class TestSort {
 
     public static void main(String[] args){
 
         TestSort testSort = new TestSort();
-        boolean result = testSort.hasRepeated(new int[]{1,2,4,5,6,1} );
+        int result = testSort.maxRepeatedElement(new int[]{} );
         System.out.print(result);
 
     }
@@ -31,5 +33,34 @@ public class TestSort {
         }
 
         return false;
+    }
+
+    //Q: Find the number of max occurance of an element
+    //O(nlog(n))
+    public int maxRepeatedElement(int[] arr){
+
+        if(arr==null)
+            return 0;
+
+        if(arr.length<2)
+            return arr.length;
+
+        Arrays.sort(arr);
+
+        int maxValue = 1;
+        int current = arr[0];
+        int counter = 1;
+
+        for(int i=1;i<arr.length;i++){
+            if(arr[i]==current){
+                counter++;
+            }else{
+                current = arr[i];
+                maxValue = (maxValue<counter) ? counter : maxValue;
+                counter=1;
+            }
+        }
+
+        return maxValue;
     }
 }
