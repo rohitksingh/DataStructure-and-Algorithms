@@ -12,7 +12,8 @@ public class TestSort {
 
 
     //Q: Find if there are duplicates are present in an array given that extra space is not allowed
-    //Complexity is 0(nlog(n)) is the sorting is done in log(n)
+    //Complexity is 0(nlog(n)) is the sorting is done in nlog(n) [Heap sort]
+    // nlog(n) + n = nlog(n)[Searching + linear scan]
     //If we use hashing it can be done in O(n) time
     public boolean hasRepeated(int[] arr){
 
