@@ -8,14 +8,35 @@ public class TestSort {
 
         TestSort testSort = new TestSort();
 
-        int[] output = testSort.merge(new int[]{0,1,2,3}, new int[]{1,2});
+        int[] output = testSort.mergeNoSpace(new int[]{0,1,2,3}, new int[]{});
         for(int element : output){
             System.out.print(element+" ");
         }
 
     }
 
+    public int[] mergeNoSpace(int[] A, int[] B){
+
+        int counter = A.length-1;
+        int sizeA = A.length - B.length -1;
+        int sizeB = B.length -1;
+
+        while(counter!=0){
+            if(sizeA==0){
+                A[counter--] = B[sizeB--];
+
+            }else if(sizeB==0){
+                A[counter--] = A[sizeA--];
+            }
+        }
+
+        return A;
+
+    }
+
+
     //Merge two sorted arrays when extra space is allowed
+    //This function is used in merge sort
     public int[] merge(int[] A, int[] B){
 
         int[] outputArray = new int[A.length+B.length];
