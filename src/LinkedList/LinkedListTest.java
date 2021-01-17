@@ -9,10 +9,34 @@ public class LinkedListTest {
     public static void main(String[] args){
 
         LinkedListTest test = new LinkedListTest();
-        boolean value = test.ifHasLoop(test.getList());
-        System.out.print(value);
+        LinkedList value = test.addElememtinSorted(test.getList(), new LinkedList(10));
+        test.traverse(value);
 
     }
+
+    /**************************************************************************************
+     *          Add an element in a sorted LinkedList
+     */
+    public LinkedList addElememtinSorted(LinkedList head, LinkedList node){
+
+        LinkedList traversingNode = head;  // First element
+
+        while (traversingNode.getNext()!=null && traversingNode.getData()<node.getData()){
+            traversingNode = traversingNode.getNext();
+        }
+
+        if(traversingNode.getNext()!=null){
+            LinkedList temp = traversingNode;
+            node.setNext(temp.getNext());
+            temp.setNext(node);
+        }else{
+            traversingNode.setNext(node);
+        }
+
+        return head;
+
+    }
+
 
     /****************************************************************************************
      *          Find if a List has loop
@@ -166,7 +190,6 @@ public class LinkedListTest {
         node3.setNext(node4);
         node4.setNext(node5);
         node5.setNext(node6);
-
 
 
         return head;
