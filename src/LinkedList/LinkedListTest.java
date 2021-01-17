@@ -1,5 +1,9 @@
 package LinkedList;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class LinkedListTest {
 
 
@@ -9,9 +13,90 @@ public class LinkedListTest {
     public static void main(String[] args){
 
         LinkedListTest test = new LinkedListTest();
-        LinkedList value = test.addElememtinSorted(test.getList(), new LinkedList(10));
-        test.traverse(value);
+        List<Integer> list = test.ulamNumber(102);
+        for(Integer element: list){
+            System.out.println(element+" ");
+        }
 
+    }
+
+
+    public List<Integer> ulamNumber(int n){
+
+        List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+
+        HashMap<Integer, Boolean> table = new HashMap<>();
+        table.put(1, true);
+        table.put(2, true);
+
+        // 1 - 5
+
+        for(int i=3;i<=n;i++){
+
+            // n = 3
+            int count = 0;
+
+
+
+            for(int j = i-1;j>i/2;j--){
+
+                if(table.get(j)!=null && table.get(i-j)!=null && i!=j){
+                    count++;
+                }
+            }
+
+            if(count==1){
+                list.add(i);
+                table.put(i, true);
+            }
+
+        }
+
+
+
+        return list;
+
+    }
+
+    /******************************************************************************
+     *              Print reverse List
+     */
+    public void printReverse(LinkedList head){
+
+        if (head!=null){
+           printReverse(head.getNext());
+           System.out.print(head.getData()+" ");
+        }
+    }
+
+
+    /**********************************************************************************
+     *
+     *          Reverse a Linkedlist
+     *              Iterative approach
+     *              Recursive approach
+     *
+     */
+    public LinkedList reverseList(LinkedList head){
+
+        if(head==null || head.getNext()==null){
+            return head;
+        }
+
+        LinkedList current, prev, next;
+        current = head;
+        prev = null;
+
+        while (current!=null){
+            next = current.getNext();
+            current.setNext(prev);
+            prev = current;
+            current = next;
+        }
+
+        return prev;
     }
 
     /**************************************************************************************
