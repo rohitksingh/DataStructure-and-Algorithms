@@ -3,11 +3,57 @@ package LinkedList;
 public class LinkedListTest {
 
 
+    public int counter = 0;
+
+    //1->2->3->4->5->6-Head
     public static void main(String[] args){
+
         LinkedListTest test = new LinkedListTest();
-        LinkedList output = test.addAt(test.getList(), new LinkedList(10),1);
-        test.traverse(output);
+        LinkedList value = test.recursiveTraverse(test.getList(),3);
+        System.out.print(value.getData());
+
     }
+
+    //Recursive approach for finding the nth last element in a linked list
+    public LinkedList recursiveTraverse(LinkedList head, int n){
+
+        LinkedList result  = head;
+
+        if (head!=null){
+            result = recursiveTraverse(head.getNext(),  n);
+            counter++;
+            if(counter==n){
+                result = head;
+            }
+        }
+
+        return result;
+    }
+
+
+    /**
+     * This is 2 pointer approach
+     * Time complexity 0(N)
+     * Space complexity 0(1)
+     */
+    public int findNthLastElement(LinkedList head, int n){
+
+        LinkedList pointer1, pointer2;
+        pointer1 = pointer2 = head;
+
+        for(int i=0;i<n;i++){
+            pointer1 = pointer1.getNext();
+        }
+
+        while (pointer1!=null){
+            pointer1 = pointer1.getNext();
+            pointer2 = pointer2.getNext();
+        }
+
+        return pointer2.getData();
+    }
+
+
 
 
     //head->1->2->3-Null
