@@ -9,12 +9,43 @@ public class LinkedListTest {
     public static void main(String[] args){
 
         LinkedListTest test = new LinkedListTest();
-        LinkedList value = test.recursiveTraverse(test.getList(),3);
-        System.out.print(value.getData());
+        boolean value = test.ifHasLoop(test.getList());
+        System.out.print(value);
 
     }
 
-    //Recursive approach for finding the nth last element in a linked list
+    /****************************************************************************************
+     *          Find if a List has loop
+     *          A) Two pointer approach - Pointer1 - FAST , Pointer2 - Slow
+     */
+
+    //A) 2 pointer approach
+    public boolean ifHasLoop(LinkedList head){
+
+        if(head==null)
+            return false;
+
+        LinkedList fastPointer, slowPointer;
+        fastPointer = slowPointer = head;
+
+        while (fastPointer.getNext()!=null){              //This makes sure that .get() is not null so that
+           fastPointer = fastPointer.getNext().getNext(); // .get().get() will not give nullpointer exception
+           slowPointer = slowPointer.getNext();
+           if(fastPointer==slowPointer)
+               return true;
+        }
+
+        return false;
+
+    }
+
+    /****************************************************************************************
+     *          Find the nth element in a list from the enD
+     *          A) Recursive approach
+     *          B) 2 pointer approach
+     */
+
+    //A) recursive approach
     public LinkedList recursiveTraverse(LinkedList head, int n){
 
         LinkedList result  = head;
@@ -31,11 +62,7 @@ public class LinkedListTest {
     }
 
 
-    /**
-     * This is 2 pointer approach
-     * Time complexity 0(N)
-     * Space complexity 0(1)
-     */
+    //Two pointer approach
     public int findNthLastElement(LinkedList head, int n){
 
         LinkedList pointer1, pointer2;
@@ -54,10 +81,15 @@ public class LinkedListTest {
     }
 
 
-
+    /***************************************************************************************
+     *          Add element in a linkedlist
+     *          3 cases
+     *              a) At the start
+     *              b) At the middle
+     *              c) At the end
+     */
 
     //head->1->2->3-Null
-    //O(1) Time complexity 0(1) Space complexity
     public LinkedList addFirst(LinkedList head, LinkedList node){
         LinkedList first = head.getNext();
         node.setNext(first);
@@ -93,6 +125,9 @@ public class LinkedListTest {
 
     }
 
+    /**************************************************************************************
+     *          Traverse LinkedList
+     */
     public void traverse(LinkedList head){
 
         if(head==null)
@@ -112,7 +147,9 @@ public class LinkedListTest {
 
 
 
-
+    /**************************************************************************************
+     *          A test LinkedList for all the algorithms
+     */
     public LinkedList getList(){
 
         LinkedList head = new LinkedList();
@@ -129,6 +166,7 @@ public class LinkedListTest {
         node3.setNext(node4);
         node4.setNext(node5);
         node5.setNext(node6);
+
 
 
         return head;
