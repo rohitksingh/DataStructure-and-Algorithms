@@ -37,7 +37,7 @@ public class Leetcode {
     }
 
 
-    //Problem3
+    //Problem4
     //Find median of two Sorted Array
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
@@ -76,6 +76,25 @@ public class Leetcode {
             return result[mid];
         }
 
+
+    }
+
+    //Problem 7
+    //Reverse Integer
+    public int reverse(int x) {
+
+        long out = 0;
+
+        while(x!=0){
+            int rem = x%10;
+            out = out*10 + rem;
+            x=x/10;
+        }
+
+        if(out>Integer.MAX_VALUE || out<Integer.MIN_VALUE)
+            return 0;
+
+        return (int)out;
 
     }
 
