@@ -122,6 +122,49 @@ public class Leetcode {
 
     }
 
+
+    //Find First and Last Position of Element in Sorted Array
+    public int[] searchRange(int[] nums, int target) {
+
+        int start = 0;
+        int end = nums.length-1;
+        boolean found = false;
+
+        while(start<=end){
+
+            int mid = (start+end)/2;
+
+            if(nums[mid]<target){
+                start = mid+1;
+            }else if(nums[mid]>target){
+                end = mid-1;
+            }else{
+                found = true;
+                break;
+            }
+
+
+        }
+
+        if(!found)
+            return new int[]{-1,-1};
+
+        while(nums[start]<target){
+            start++;
+        }
+
+        while(nums[end]>target){
+            end--;
+        }
+
+        return new int[]{start,end};
+    }
+
+
+
+
+
+
     public void display(ListNode listNode){
         while (listNode!=null){
             System.out.print(listNode.val+"->");
