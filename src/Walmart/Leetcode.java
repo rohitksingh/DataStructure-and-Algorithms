@@ -13,7 +13,6 @@ public class Leetcode {
     }
 
 
-
     //Problem 1
     //Twp Sum
     //0(N) Time complexity
@@ -98,32 +97,66 @@ public class Leetcode {
 
     }
 
+    //Problem 21
+    //Merge two Sorted Linkedlist
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 
-    //Create LinkedList from an array
-    public ListNode getList(int[] arr){
+        if(l1==null && l2==null)
+            return null;
+
+        if(l1==null)
+            return l2;
+
+        if(l2==null)
+            return l1;
 
         ListNode head, curr;
         head = curr = null;
 
-        for(int element: arr){
+        while(l1!=null && l2!=null){
 
-            ListNode node = new ListNode(element);
+            if(l1.val<=l2.val){
 
-            if(head==null){
-                head = node;
-                curr = node;
-            }else {
-                curr.next = node;
-                curr = node;
+                ListNode node = new ListNode(l1.val);
+
+                if(head==null){
+                    head = node;
+                    curr = node;
+                }else{
+                    curr.next = node;
+                    curr = node;
+                }
+
+                l1 = l1.next;
+
+            }else{
+                ListNode node = new ListNode(l2.val);
+
+                if(head==null){
+                    head = node;
+                    curr = node;
+                }else{
+                    curr.next = node;
+                    curr = node;
+                }
+
+                l2 = l2.next;
             }
+
+        }
+
+        if(l1==null){
+            curr.next = l2;
+        }
+
+        if(l2==null){
+            curr.next = l1;
         }
 
         return head;
-
     }
 
-
-    //Find First and Last Position of Element in Sorted Array
+    //Problem 34: Find First and Last Position of Element in Sorted Array
     public int[] searchRange(int[] nums, int target) {
 
         int start = 0;
@@ -159,6 +192,31 @@ public class Leetcode {
 
         return new int[]{start,end};
     }
+
+
+    //Create LinkedList from an array
+    public ListNode getList(int[] arr){
+
+        ListNode head, curr;
+        head = curr = null;
+
+        for(int element: arr){
+
+            ListNode node = new ListNode(element);
+
+            if(head==null){
+                head = node;
+                curr = node;
+            }else {
+                curr.next = node;
+                curr = node;
+            }
+        }
+
+        return head;
+
+    }
+
 
 
 
