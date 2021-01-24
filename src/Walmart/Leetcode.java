@@ -1,7 +1,6 @@
 package Walmart;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Leetcode {
 
@@ -194,6 +193,56 @@ public class Leetcode {
     }
 
 
+    //Problem 151 : Reverse Words in a String
+    // Main point is s.trim().split("\\s+");
+    public String reverseWords(String s) {
+
+        String[] tokens = s.trim().split("\\s+");
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(int i =tokens.length-1;i>=0;i--){
+            stringBuilder.append(tokens[i]);
+            if(i!=0){
+                stringBuilder.append(" ");
+            }
+        }
+
+        return stringBuilder.toString();
+    }
+
+    //Level Order Traversal
+    public List<List<Integer>> levelOrder(TreeNode root) {
+
+        List<List<Integer>> levels = new ArrayList();
+
+        if(root==null)
+            return levels;
+
+        Queue<TreeNode> queue = new LinkedList();
+        queue.add(root);
+
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            List<Integer> level = new ArrayList();
+            for(int i=0;i<size;i++){
+                TreeNode node = queue.remove();
+                level.add(node.val);
+                if(node.left!=null){
+                    queue.add(node.left);
+                }
+                if(node.right!=null){
+                    queue.add(node.right);
+                }
+            }
+            levels.add(level);
+        }
+
+        return levels;
+
+    }
+
+
     //Create LinkedList from an array
     public ListNode getList(int[] arr){
 
@@ -223,6 +272,8 @@ public class Leetcode {
 
 
 
+
+
     public void display(ListNode listNode){
         while (listNode!=null){
             System.out.print(listNode.val+"->");
@@ -240,3 +291,16 @@ class ListNode {
     ListNode next;
     ListNode(int x) { val = x; }
  }
+
+ class TreeNode {
+      int val;
+      TreeNode left;
+      TreeNode right;
+      TreeNode() {}
+      TreeNode(int val) { this.val = val; }
+      TreeNode(int val, TreeNode left, TreeNode right) {
+          this.val = val;
+          this.left = left;
+          this.right = right;
+      }
+  }
