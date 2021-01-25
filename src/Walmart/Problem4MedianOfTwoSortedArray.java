@@ -2,8 +2,12 @@ package Walmart;
 
 public class Problem4MedianOfTwoSortedArray {
 
-
-    //Important point : - mergedArray is of type double
+    /**
+     *   1- mergedArray of type double
+     *
+     *   Time complexity 0(n+m)
+     *   Space complexity 0(n+m)
+     */
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
         int size1 = nums1.length;
