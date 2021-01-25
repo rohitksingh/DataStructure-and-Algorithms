@@ -1,6 +1,6 @@
 package Walmart;
 
-public class Problem4MedianOfTwoSortedArray {
+public class P4MedianOfTwoSortedArray {
 
     /**
      *   1- mergedArray of type double
