@@ -5,6 +5,13 @@ import java.util.Map;
 
 public class P1TwoSum {
 
+    public static void main(String[] args) {
+        char a = '2';
+        char b = '2';
+        int c =  Character.getNumericValue(a)+Character.getNumericValue(a);
+
+        System.out.println(c);
+    }
 
     /**
      *   1- check if the diff exists. Then add the key
