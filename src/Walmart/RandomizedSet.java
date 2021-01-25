@@ -33,9 +33,10 @@ class RandomizedSet {
     /** Get a random element from the set. */
     public int getRandom() {
 
+        new Map<>().
+
         List<Integer> values = new ArrayList(hashSet.values());
         int randomNum = new Random().nextInt(values.size());
         return values.get(randomNum);
-
     }
 }
