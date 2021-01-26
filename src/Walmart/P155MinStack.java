@@ -11,7 +11,7 @@ public class P155MinStack {
 
     Stack<Integer> stack, minStack;
 
-    public MinStack() {
+    public P155MinStack() {
         stack = new Stack();
         minStack = new Stack();
     }
