@@ -32,10 +32,6 @@ public class P797AllPathsFromSrcToTrg {
 
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
 
-
-        String a = "Rohit";
-        Arrays.sort(a);
-
         List<List<Integer>> paths = new ArrayList();
         Queue<List> tempPath = new LinkedList();
         tempPath.add(Arrays.asList(0));
