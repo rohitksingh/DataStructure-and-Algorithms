@@ -23,7 +23,18 @@ public class P797AllPathsFromSrcToTrg {
      *              updatedpath.add(choice)
      *              stack.push(updatedPath)
      */
+
+
+    public List<List<String>> getAllList(String[] strs){
+        return new ArrayList(Arrays.asList(strs));
+    }
+
+
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+
+
+        String a = "Rohit";
+        Arrays.sort(a);
 
         List<List<Integer>> paths = new ArrayList();
         Queue<List> tempPath = new LinkedList();
