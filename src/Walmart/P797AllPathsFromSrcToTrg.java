@@ -6,8 +6,23 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Queue;
 
+
 public class P797AllPathsFromSrcToTrg {
 
+
+    /**
+     *
+     *   1) Adding source as a List shortcut:
+     *      queue.add(Arrays.asList(0)
+     *      List<Integer> numList = Arrays.asList(0,2,3,4,5);
+     *
+     *   2) Queue.poll methods removes element from start of the queue
+     *          queue.poll ~~ stack.pop
+     *
+     *   3) List<Integer> updatedPath = new ArrayList(path);
+     *              updatedpath.add(choice)
+     *              stack.push(updatedPath)
+     */
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
 
         List<List<Integer>> paths = new ArrayList();
