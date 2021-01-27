@@ -21,7 +21,7 @@ public class P819MostCommonWord {
             }
         }
 
-        if(map.get("")!=null)){
+        if(map.get("")!=null){
             map.remove("");
         }
 
