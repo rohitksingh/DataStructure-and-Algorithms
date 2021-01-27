@@ -1,4 +1,4 @@
-package Walmart;
+package Leetcode;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -7,7 +7,7 @@ public class FrequencySort {
 
     public static void main(String[] args) {
         FrequencySort fs = new FrequencySort();
-        fs.sort(new int[]{1,3,3,4,5,6,8,6,1,3});
+        fs.sort(new int[]{1,3,3,4,5,6,8,6,1});
     }
 
     public void sort(int[] arr){
